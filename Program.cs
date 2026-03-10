@@ -16,7 +16,8 @@ namespace FantasyLeagueManager
             // ---------------------------------------------------------
             // SETUP
             // ---------------------------------------------------------
-            string connString = $"Server=\"DESKTOP-L00PKD4\\MYSERVER\";Database=FantasyLeagueDb;Integrated Security=True;TrustServerCertificate=True;Connect Timeout=30;";
+            string connString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")           
+                                ?? $"Server=\"DESKTOP-L00PKD4\\MYSERVER\";Database=FantasyLeagueDb;Integrated Security=True;TrustServerCertificate=True;Connect Timeout=30;";
             var optionsBuilder = new DbContextOptionsBuilder<FantasyLeagueDbContext>();
             optionsBuilder.UseSqlServer(connString);
 
