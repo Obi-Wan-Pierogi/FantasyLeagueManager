@@ -21,4 +21,6 @@ public partial class RosterLog
 
     [Column(TypeName = "datetime")]
     public DateTime LogDate { get; set; }
+
+    public virtual Player Player { get; set; } = null!;
 }

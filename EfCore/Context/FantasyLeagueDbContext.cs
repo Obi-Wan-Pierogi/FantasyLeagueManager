@@ -23,7 +23,12 @@ public partial class FantasyLeagueDbContext : DbContext
     public virtual DbSet<Team> Teams { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-L00PKD4\\MYSERVER;Database=FantasyLeagueDb;Integrated Security=True;TrustServerCertificate=True;");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer("Server=DESKTOP-L00PKD4\\MYSERVER;Database=FantasyLeagueDb;Integrated Security=True;TrustServerCertificate=True;");
+        }
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -35,6 +40,12 @@ public partial class FantasyLeagueDbContext : DbContext
         modelBuilder.Entity<RosterLog>(entity =>
         {
             entity.HasKey(e => e.LogId).HasName("PK__RosterLo__5E548648F7D6C73C");
+
+            entity.HasOne(d => d.Player)
+                .WithMany() 
+                .HasForeignKey(d => d.PlayerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_RosterLogs_Players");
 
             entity.Property(e => e.LogDate).HasDefaultValueSql("(getdate())");
         });

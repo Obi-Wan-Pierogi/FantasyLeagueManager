@@ -1,0 +1,7 @@
+services:
+  app:
+    build: .
+    environment:
+      - DB_CONNECTION_STRING=Data Source=SQL8006.site4now.net;Initial Catalog=db_ac67e0_fantasyleaguedb;User Id=db_ac67e0_fantasyleaguedb_admin;Password=ILikeToast123!;Encrypt=True;TrustServerCertificate=True;
+    stdin_open: true 
+    tty: true
