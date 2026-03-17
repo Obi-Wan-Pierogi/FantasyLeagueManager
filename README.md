@@ -35,7 +35,7 @@ This project is designed to be highly portable. You do not need SQL Server insta
 ### Execution
 1.  **Clone the Repository**:
     ```bash
-    git clone [your-repository-link]
+    git clone https://github.com/Obi-Wan-Pierogi/FantasyLeagueManager/tree/feature/docker-containerization
     cd FantasyLeagueManager
     ```
 2.  **Build and Run**:
